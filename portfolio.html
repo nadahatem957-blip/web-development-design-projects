@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="Nada's software engineering portfolio, skills, education, and assignments.">
+  <title>Nada | Software Engineering Student</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #17231e;
+      --muted: #66716a;
+      --paper: #f7f6f2;
+      --white: #fffefa;
+      --green: #31634b;
+      --green-dark: #244b38;
+      --lime: #d5ed9c;
+      --line: #e7e6df;
+      --serif: Georgia, "Times New Roman", serif;
+      --sans: "Segoe UI", Arial, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--sans);
+      line-height: 1.6;
+    }
+
+    a { color: inherit; }
+    button, input, textarea { font: inherit; }
+
+    .shell {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+    }
+
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 82px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: var(--ink);
+      font-size: 15px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      text-decoration: none;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--green);
+      color: white;
+      font-family: var(--serif);
+      font-size: 18px;
+    }
+
+    .navigation {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .navigation a { text-decoration: none; }
+    .navigation a:hover { color: var(--green); }
+
+    .nav-cta {
+      padding: 10px 16px;
+      border: 1px solid #cad4c8;
+      border-radius: 999px;
+      color: var(--green) !important;
+      font-weight: 650;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.4fr) minmax(270px, .6fr);
+      align-items: center;
+      gap: 72px;
+      padding: 90px 0 98px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin: 0 0 19px;
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+    }
+
+    .eyebrow::before {
+      width: 22px;
+      height: 1px;
+      background: currentColor;
+      content: "";
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 680px;
+      margin-bottom: 20px;
+      font-family: var(--serif);
+      font-size: clamp(48px, 7vw, 78px);
+      font-weight: 400;
+      letter-spacing: -.055em;
+      line-height: 1.03;
+    }
+
+    h1 span { color: var(--green); font-style: italic; }
+
+    .hero-copy {
+      max-width: 550px;
+      margin-bottom: 29px;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: 11px; }
+
+    .button {
+      display: inline-flex;
+      min-height: 45px;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
+      padding: 0 18px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: var(--green);
+      color: white;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 650;
+      text-decoration: none;
+      transition: background .18s ease, transform .18s ease;
+    }
+
+    .button:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .button.secondary { border-color: var(--line); background: transparent; color: var(--ink); }
+    .button.secondary:hover { background: white; }
+    .button.small { min-height: 38px; padding: 0 14px; font-size: 12px; }
+
+    .profile-card {
+      position: relative;
+      min-height: 315px;
+      overflow: hidden;
+      padding: 29px;
+      border-radius: 12px;
+      background: #e8eee3;
+    }
+
+    .profile-card::before, .profile-card::after {
+      position: absolute;
+      width: 190px;
+      height: 190px;
+      border: 1px solid rgba(49, 99, 75, .18);
+      border-radius: 50%;
+      content: "";
+    }
+
+    .profile-card::before { right: -48px; bottom: -60px; }
+    .profile-card::after { right: -18px; bottom: -30px; }
+
+    .avatar {
+      display: grid;
+      width: 83px;
+      height: 83px;
+      place-items: center;
+      margin-bottom: 55px;
+      border: 1px solid rgba(49, 99, 75, .16);
+      border-radius: 50%;
+      background: var(--lime);
+      color: var(--green-dark);
+      font-family: var(--serif);
+      font-size: 36px;
+    }
+
+    .profile-card p { position: relative; z-index: 1; margin-bottom: 5px; color: var(--muted); font-size: 12px; }
+    .profile-card strong { position: relative; z-index: 1; display: block; font-family: var(--serif); font-size: 23px; font-weight: 400; }
+    .availability { position: absolute; top: 30px; right: 28px; z-index: 1; font-size: 11px; color: var(--green); }
+    .availability::before { display: inline-block; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #76a55b; content: ""; }
+
+    .section {
+      padding: 76px 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading .eyebrow { margin-bottom: 11px; }
+
+    h2 {
+      margin-bottom: 0;
+      font-family: var(--serif);
+      font-size: clamp(34px, 4vw, 46px);
+      font-weight: 400;
+      letter-spacing: -.04em;
+      line-height: 1.15;
+    }
+
+    .section-intro { max-width: 410px; margin: 0; color: var(--muted); font-size: 14px; }
+
+    .about-grid, .learning-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+    }
+
+    .about-text { max-width: 510px; color: var(--muted); font-size: 15px; }
+    .about-text p:last-child { margin-bottom: 0; }
+
+    .education-card {
+      padding: 23px 25px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--white);
+    }
+
+    .education-card .label { margin-bottom: 11px; color: var(--green); font-size: 10px; font-weight: 750; letter-spacing: .13em; text-transform: uppercase; }
+    .education-card h3 { margin-bottom: 5px; font-family: var(--serif); font-size: 22px; font-weight: 400; }
+    .education-card p { margin-bottom: 0; color: var(--muted); font-size: 13px; }
+
+    .skill-list { display: flex; flex-wrap: wrap; gap: 10px; }
+    .skill {
+      padding: 10px 15px;
+      border: 1px solid #e0e3d9;
+      border-radius: 999px;
+      background: var(--white);
+      color: #34443a;
+      font-size: 13px;
+    }
+
+    .assignment-section { padding-bottom: 86px; }
+
+    .assignment-layout {
+      display: grid;
+      grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr);
+      align-items: start;
+      gap: 55px;
+    }
+
+    .assignment-note {
+      padding: 25px;
+      border-radius: 10px;
+      background: #e8eee3;
+    }
+
+    .assignment-note h3 { margin-bottom: 9px; font-family: var(--serif); font-size: 23px; font-weight: 400; }
+    .assignment-note p { margin-bottom: 18px; color: #56655a; font-size: 13px; }
+    .repository-link {
+      display: flex;
+      min-height: 54px;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 0 16px;
+      border-radius: 7px;
+      background: var(--green);
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background .18s ease, transform .18s ease;
+    }
+    .repository-link:hover { background: var(--green-dark); transform: translateY(-1px); }
+    .repository-link:focus-visible { outline: 3px solid #9ab99e; outline-offset: 3px; }
+    .repository-link span:last-child { font-size: 18px; }
+
+    .project-form {
+      display: grid;
+      gap: 14px;
+      padding: 25px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--white);
+    }
+
+    .form-title { margin-bottom: 1px; font-family: var(--serif); font-size: 23px; font-weight: 400; }
+    .field { display: grid; gap: 6px; }
+    .field label { color: #4b574f; font-size: 11px; font-weight: 700; }
+    .field input, .field textarea {
+      width: 100%;
+      min-height: 42px;
+      padding: 10px 12px;
+      border: 1px solid #dedfd8;
+      border-radius: 6px;
+      background: #fff;
+      color: var(--ink);
+      font-size: 13px;
+    }
+    .field textarea { min-height: 76px; resize: vertical; }
+    .field input:focus, .field textarea:focus { outline: 2px solid #9ab99e; outline-offset: 1px; }
+    .file-input { padding: 7px !important; }
+    .field-hint { margin: -2px 0 0; color: var(--muted); font-size: 11px; }
+
+    .form-message { min-height: 18px; margin: -4px 0 0; color: var(--green); font-size: 12px; }
+    .form-message.error { color: #a13b32; }
+
+    .project-list { display: grid; gap: 12px; margin-top: 22px; }
+    .project-card {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 18px 19px;
+      border: 1px solid var(--line);
+      border-radius: 9px;
+      background: var(--white);
+    }
+
+    .project-card h3 { margin-bottom: 4px; font-family: var(--serif); font-size: 19px; font-weight: 400; }
+    .project-card p { margin-bottom: 0; color: var(--muted); font-size: 12px; }
+    .project-link { display: inline-block; margin-top: 8px; color: var(--green); font-size: 12px; overflow-wrap: anywhere; }
+    .project-files { margin-top: 6px !important; color: #788078 !important; }
+    .project-actions { display: flex; flex-shrink: 0; gap: 7px; }
+    .icon-button {
+      display: grid;
+      width: 34px;
+      height: 34px;
+      place-items: center;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: transparent;
+      color: var(--muted);
+      cursor: pointer;
+    }
+    .icon-button:hover { border-color: #cbd7c9; color: var(--green); }
+    .empty-state { padding: 25px 18px; border: 1px dashed #d6d8cf; border-radius: 9px; color: var(--muted); font-size: 13px; text-align: center; }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 24px 0 30px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .footer a { color: var(--green); text-decoration: none; }
+    .toast {
+      position: fixed;
+      right: 22px;
+      bottom: 22px;
+      z-index: 5;
+      padding: 12px 16px;
+      border-radius: 7px;
+      background: var(--ink);
+      color: white;
+      font-size: 13px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(8px);
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .toast.visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 760px) {
+      .shell { width: min(100% - 36px, 560px); }
+      .topbar { min-height: 70px; }
+      .navigation { gap: 15px; }
+      .navigation a:not(.nav-cta) { display: none; }
+      .hero { grid-template-columns: 1fr; gap: 34px; padding: 65px 0 72px; }
+      .profile-card { min-height: 250px; }
+      .avatar { margin-bottom: 34px; }
+      .section { padding: 60px 0; }
+      .section-heading { align-items: start; flex-direction: column; }
+      .about-grid, .learning-grid, .assignment-layout { grid-template-columns: 1fr; gap: 23px; }
+      .assignment-layout { gap: 18px; }
+      .footer { align-items: flex-start; flex-direction: column; gap: 8px; }
+    }
+
+    @media (max-width: 420px) {
+      .shell { width: calc(100% - 30px); }
+      h1 { font-size: 48px; }
+      .actions .button { width: 100%; }
+      .project-form { padding: 19px; }
+      .project-card { flex-direction: column; }
+      .project-actions { align-self: flex-end; }
+    }
+  </style>
+</head>
+<body>
+  <header class="shell topbar">
+    <a class="brand" href="#home" aria-label="Nada, home">
+      <span class="brand-mark" aria-hidden="true">N</span>
+      <span>Nada</span>
+    </a>
+    <nav class="navigation" aria-label="Main navigation">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#assignments">Assignments</a>
+      <a class="nav-cta" href="#assignments">Share a project <span aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="shell hero" id="home">
+      <div>
+        <p class="eyebrow">Software engineering student</p>
+        <h1>Hi, I’m <span>Nada.</span><br>I build with curiosity.</h1>
+        <p class="hero-copy">A software engineering student at Suez Canal University, learning how thoughtful ideas become useful, well-crafted software.</p>
+        <div class="actions">
+          <a class="button" href="#assignments">Explore my assignments <span aria-hidden="true">↓</span></a>
+          <button class="button secondary" id="sharePortfolio" type="button">Share my portfolio <span aria-hidden="true">↗</span></button>
+        </div>
+      </div>
+      <aside class="profile-card" aria-label="Profile summary">
+        <span class="availability">Open to learning</span>
+        <div class="avatar" aria-hidden="true">N.</div>
+        <p>Currently studying</p>
+        <strong>Software Engineering</strong>
+        <p>Suez Canal University</p>
+      </aside>
+    </section>
+
+    <section class="section" id="about">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">A little about me</p>
+            <h2>Learning by making.</h2>
+          </div>
+          <p class="section-intro">Building a strong foundation in programming, problem-solving, and the craft of creating for the web.</p>
+        </div>
+        <div class="about-grid">
+          <div class="about-text">
+            <p>I’m Nada, a software engineering student who enjoys turning new concepts into practical projects. I’m exploring both the fundamentals behind software and the tools that bring ideas to life.</p>
+            <p>This portfolio is where I collect my coursework and projects as I grow. I’m always curious, always learning, and excited to take on the next challenge.</p>
+          </div>
+          <article class="education-card">
+            <p class="label">Education</p>
+            <h3>Suez Canal University</h3>
+            <p>Software Engineering student</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="skills">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Tools I’m learning</p>
+            <h2>My skills.</h2>
+          </div>
+          <p class="section-intro">A growing toolkit for building, styling, and working with software and data.</p>
+        </div>
+        <div class="skill-list" aria-label="Skills">
+          <span class="skill">C++</span>
+          <span class="skill">HTML</span>
+          <span class="skill">CSS</span>
+          <span class="skill">JavaScript</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Python</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section assignment-section" id="assignments">
+      <div class="shell">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">Coursework & projects</p>
+            <h2>Assignments.</h2>
+          </div>
+          <p class="section-intro">Add an assignment and share it with your professor in just a couple of clicks.</p>
+        </div>
+        <div class="assignment-layout">
+          <aside class="assignment-note">
+            <h3>A note from me</h3>
+            <p>Welcome to my assignments page! I’ve gathered my web development and design projects in the repository below. Feel free to take a look. If I’m sending an assignment to my professor, I can add its title, email, files, and a short note in the form.</p>
+            <a class="repository-link" href="https://github.com/nadahatem957-blip/web-development-design-projects.git" target="_blank" rel="noopener noreferrer">
+              <span>Explore my GitHub projects</span>
+              <span aria-hidden="true">↗</span>
+            </a>
+          </aside>
+          <div>
+            <form class="project-form" id="projectForm">
+              <h3 class="form-title">Add an assignment</h3>
+              <div class="field">
+                <label for="projectTitle">Project title</label>
+                <input id="projectTitle" name="title" type="text" placeholder="e.g. Database design project" required maxlength="80">
+              </div>
+              <div class="field">
+                <label for="professorEmail">Professor’s email <span style="font-weight:400">(optional)</span></label>
+                <input id="professorEmail" name="email" type="email" placeholder="professor@university.edu">
+              </div>
+              <div class="field">
+                <label for="projectFiles">Attach project files <span style="font-weight:400">(optional)</span></label>
+                <input class="file-input" id="projectFiles" name="files" type="file" multiple>
+                <p class="field-hint">Files are listed here for your reference and are not uploaded to the internet.</p>
+              </div>
+              <div class="field">
+                <label for="projectNote">Short note <span style="font-weight:400">(optional)</span></label>
+                <textarea id="projectNote" name="note" placeholder="What did you build or learn?"></textarea>
+              </div>
+              <p class="form-message" id="formMessage" role="status" aria-live="polite"></p>
+              <button class="button small" type="submit">Add assignment <span aria-hidden="true">＋</span></button>
+            </form>
+            <div class="project-list" id="projectList" aria-live="polite"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="shell footer">
+    <span>© <span id="year"></span> Nada · Made with curiosity.</span>
+    <a href="#home">Back to top ↑</a>
+  </footer>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const storageKey = "nadah-portfolio-projects";
+    const repositoryUrl = "https://github.com/nadahatem957-blip/web-development-design-projects.git";
+    const form = document.getElementById("projectForm");
+    const list = document.getElementById("projectList");
+    const toast = document.getElementById("toast");
+    const message = document.getElementById("formMessage");
+    const fileInput = document.getElementById("projectFiles");
+    let projects = loadProjects();
+    let toastTimer;
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    function loadProjects() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(storageKey) || "[]");
+        return Array.isArray(saved) ? saved.filter((project) =>
+          project && typeof project.id === "string" &&
+          typeof project.title === "string"
+        ) : [];
+      } catch (error) {
+        console.error("Could not load saved assignments.", error);
+        return [];
+      }
+    }
+
+    function saveProjects() {
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(projects));
+        return true;
+      } catch (error) {
+        console.error("Could not save assignments in this browser.", error);
+        showMessage("Could not save this assignment. Check your browser storage settings.", true);
+        return false;
+      }
+    }
+
+    function showMessage(text, isError) {
+      message.textContent = text;
+      message.classList.toggle("error", Boolean(isError));
+    }
+
+    function showToast(text) {
+      toast.textContent = text;
+      toast.classList.add("visible");
+      window.clearTimeout(toastTimer);
+      toastTimer = window.setTimeout(() => toast.classList.remove("visible"), 2600);
+    }
+
+    function createProjectCard(project) {
+      const card = document.createElement("article");
+      card.className = "project-card";
+
+      const content = document.createElement("div");
+      const title = document.createElement("h3");
+      title.textContent = project.title;
+      content.append(title);
+
+      if (project.note) {
+        const note = document.createElement("p");
+        note.textContent = project.note;
+        content.append(note);
+      }
+
+      const link = document.createElement("a");
+      link.className = "project-link";
+      link.href = repositoryUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      link.textContent = "View project repository ↗";
+      content.append(link);
+
+      if (project.files && project.files.length) {
+        const files = document.createElement("p");
+        files.className = "project-files";
+        files.textContent = "Local files: " + project.files.join(", ");
+        content.append(files);
+      }
+
+      const actions = document.createElement("div");
+      actions.className = "project-actions";
+      const emailButton = document.createElement("button");
+      emailButton.className = "icon-button";
+      emailButton.type = "button";
+      emailButton.title = "Email this project to your professor";
+      emailButton.setAttribute("aria-label", "Email " + project.title + " to your professor");
+      emailButton.textContent = "✉";
+      emailButton.addEventListener("click", () => emailProject(project));
+      actions.append(emailButton);
+
+      const deleteButton = document.createElement("button");
+      deleteButton.className = "icon-button";
+      deleteButton.type = "button";
+      deleteButton.title = "Remove assignment";
+      deleteButton.setAttribute("aria-label", "Remove " + project.title);
+      deleteButton.textContent = "×";
+      deleteButton.addEventListener("click", () => removeProject(project.id));
+      actions.append(deleteButton);
+
+      card.append(content, actions);
+      return card;
+    }
+
+    function renderProjects() {
+      list.replaceChildren();
+      if (!projects.length) {
+        const empty = document.createElement("div");
+        empty.className = "empty-state";
+        empty.textContent = "Your assignments will appear here after you add one.";
+        list.append(empty);
+        return;
+      }
+      projects.forEach((project) => list.append(createProjectCard(project)));
+    }
+
+    function emailProject(project) {
+      const email = document.getElementById("professorEmail").value.trim();
+      const subject = encodeURIComponent("Assignment: " + project.title);
+      const body = encodeURIComponent(
+        "Hello,\n\nHere is my assignment, " + project.title + ":\n" + repositoryUrl +
+        (project.note ? "\n\n" + project.note : "") + "\n\nBest,\nNada"
+      );
+      window.location.href = "mailto:" + encodeURIComponent(email) + "?subject=" + subject + "&body=" + body;
+    }
+
+    function removeProject(id) {
+      const previous = projects;
+      projects = projects.filter((project) => project.id !== id);
+      if (saveProjects()) {
+        renderProjects();
+        showToast("Assignment removed.");
+      } else {
+        projects = previous;
+      }
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const data = new FormData(form);
+      const project = {
+        id: window.crypto && typeof window.crypto.randomUUID === "function"
+          ? window.crypto.randomUUID()
+          : String(Date.now()) + Math.random().toString(16).slice(2),
+        title: String(data.get("title")).trim(),
+        note: String(data.get("note")).trim(),
+        files: Array.from(fileInput.files || []).map((file) => file.name)
+      };
+      projects.unshift(project);
+      if (!saveProjects()) {
+        projects.shift();
+        return;
+      }
+      renderProjects();
+      form.reset();
+      showMessage("");
+      showToast("Assignment added and saved in this browser.");
+    });
+
+    document.getElementById("sharePortfolio").addEventListener("click", async () => {
+      const shareData = { title: "Nada | Software Engineering Student", url: window.location.href };
+      try {
+        if (navigator.share) {
+          await navigator.share(shareData);
+        } else if (navigator.clipboard && window.isSecureContext) {
+          await navigator.clipboard.writeText(window.location.href);
+          showToast("Portfolio link copied.");
+        } else {
+          window.prompt("Copy your portfolio link:", window.location.href);
+        }
+      } catch (error) {
+        if (error.name !== "AbortError") {
+          console.error("Could not share the portfolio link.", error);
+          showToast("Sharing is unavailable in this browser.");
+        }
+      }
+    });
+
+    renderProjects();
+  </script>
+</body>
+</html>
