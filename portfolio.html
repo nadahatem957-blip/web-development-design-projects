@@ -518,9 +518,11 @@
                 <input id="professorEmail" name="email" type="email" placeholder="professor@university.edu">
               </div>
               <div class="field">
-                <label for="projectFiles">Attach project files <span style="font-weight:400">(optional)</span></label>
+                <label for="projectFiles">Attach project files or folders <span style="font-weight:400">(optional)</span></label>
                 <input class="file-input" id="projectFiles" name="files" type="file" multiple>
-                <p class="field-hint">Files are listed here for your reference and are not uploaded to the internet.</p>
+                <label for="projectFolder">Or choose a folder</label>
+                <input class="file-input" id="projectFolder" name="folder" type="file" webkitdirectory directory multiple>
+                <p class="field-hint">Files and folder contents are listed here for your reference and are not uploaded to the internet.</p>
               </div>
               <div class="field">
                 <label for="projectNote">Short note <span style="font-weight:400">(optional)</span></label>
@@ -550,6 +552,7 @@
     const toast = document.getElementById("toast");
     const message = document.getElementById("formMessage");
     const fileInput = document.getElementById("projectFiles");
+    const folderInput = document.getElementById("projectFolder");
     let projects = loadProjects();
     let toastTimer;
 
@@ -681,13 +684,19 @@
     form.addEventListener("submit", (event) => {
       event.preventDefault();
       const data = new FormData(form);
+      const selectedFiles = [
+        ...Array.from(fileInput.files || []),
+        ...Array.from(folderInput.files || [])
+      ];
       const project = {
         id: window.crypto && typeof window.crypto.randomUUID === "function"
           ? window.crypto.randomUUID()
           : String(Date.now()) + Math.random().toString(16).slice(2),
         title: String(data.get("title")).trim(),
         note: String(data.get("note")).trim(),
-        files: Array.from(fileInput.files || []).map((file) => file.name)
+        files: Array.from(new Set(
+          selectedFiles.map((file) => file.webkitRelativePath || file.name)
+        ))
       };
       projects.unshift(project);
       if (!saveProjects()) {
