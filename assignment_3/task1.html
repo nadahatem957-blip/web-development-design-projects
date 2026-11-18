@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>registration form</title>
+        </head>
+    <body>
+        <h1 align="center">registration </h1>
+
+        <form enctype="multipart/form-data" action="Thankyou.html" method="post">
+           <input type="hidden" name="user_id" value="123456789">
+         <table bordeer="1" align="center" cellpadding="5">
+            <thead> <th>personal data</th></thead>
+            <tbody>
+                <tr> 
+                    <td>First Name:</td>
+                    <td><input type="text" name="first_name" required pattern="[A-Za-z ]+"></td>
+                     
+                </tr>
+                <tr> 
+                    <td>Last Name:</td>
+                    <td><input type="text" name="last_name" required pattern="[A-Za-z ]+"></td>
+                    
+                <tr> 
+                <td>Phone:</td>
+                <td><input type="tel" name="phone" required pattern="[0-9]{11}"></td>
+                </tr>
+                <tr>
+                <td>Gender:</td>
+                <td>
+                  <input type="radio" name="gender" value="male" required> Male
+                  <input type="radio" name="gender" value="female"> Female
+                </td>
+                </tr>
+                <tr>
+                    <td>GPA:</td>
+                    <td><input type="number"  name = "gpa" min="0.0" max="4.0" step="0.1" required></td>
+
+                </tr>
+                <tr>
+                    <td>Date of Birth</td>
+                    <td><input type = "date" name="dob"></td>
+                </tr>
+                <tr> 
+                    <td>Email:</td>
+                    <td><input type="email" name="email" required></td>
+                </tr>
+                <tr>
+                    <td>Password:</td>
+                    <td><input type="password" name="password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"></td>
+                </tr>
+                 <tr>
+                    <td>repeat password:</td>
+                    <td><input type="password" name="repeat_password" required pattern="(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9]).{8,}"></td>
+                 </tr>
+                 <tr>
+                    <td>user picture:</td>
+                    <td><input type="file" name="picture"></td>
+                 </tr>
+                 <tr>
+                    <td>Faculty:</td>
+                    <td>
+                        <select name="faculty">
+                        <option>Engineering</option>
+                        <option>Computer Science</option>
+                        <option>Business</option>
+                        <option>Medicine</option>
+                        </select>
+                    </td>
+                 </tr>
+                 <th>Interests:</th>
+                 <tr>
+                    <td>
+                    <input type="checkbox" name="interest" value="Swimming"> Swimming
+                    <input type="checkbox" name="interest" value="Reading"> Reading
+                    <input type="checkbox" name="interest" value="Programming"> Programming
+                 </td>
+                </tr>
+                <tr>
+                    <th>About you</th>
+                    <td><textarea name="about" row="3" col="10"></textarea></td>
+                </tr>
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="5" align="center">
+                        <label for ="terms" name ="terms">
+                           <a href="terms.html" target="_blank">i agree to the terms and conditions</a>
+                           <input name="terms" id="terms"type="checkbox" requird>
+                        </label>
+
+                    </td>
+                </tr>  
+                <tr>
+                    <td colspan="2" align="center">
+                        
+                        <button type="submit" name="ok" > 
+                            ok
+                            <a href="Thankyou.html"></a>
+                        </button>
+                        <input type="reset" value="cancel">
+                </td>
+                </tr> 
+            
+            </tfoot>
+
+         </table>
+        
+
+        </form>
+    </body>
+
+</html>
